@@ -1,18 +1,13 @@
 ## 04. Configurar "Cyperss" para los niveles de pruebas: Sistema y Aceptación
 
 ### Paso 4.1: Instalación
-
 Abra la terminal en `frontend_web/react_node_express` y ejecute:
 ```bash
 npm install --save-dev cypress
 ```
 
 ### Paso 4.2: Inicialización y Estructura
-
-```bash
-npx cypress open
-```
-
+Ejecute `npx cypress open`. En la ventana gráfica:
 1. Seleccione **"E2E Testing"**.
 2. Seleccione un navegador (Chrome o Electron) y dé clic en **"Start"**.
 3. Cypress creará las carpetas. Puede cerrar la ventana gráfica.
