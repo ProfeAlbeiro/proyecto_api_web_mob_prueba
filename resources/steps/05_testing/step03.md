@@ -53,11 +53,12 @@ DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=
 DB_NAME=db_node_test
-DB_PORT=3307
+DB_PORT=3306
+
 JWT_SECRET=secret_test_key_123
 ```
 
-> **Profesor:** Recuerde crear en su MySQL una base de datos llamada `db_node_test` con la misma estructura de la tabla `users` que tiene en su `db_node`.
+Recuerde crear en su MySQL una base de datos llamada `db_node_test` con la misma estructura de la tabla `users` que tiene en su `db_node`.
 
 ---
 
