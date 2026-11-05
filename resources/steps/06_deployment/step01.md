@@ -31,8 +31,9 @@ En Azure, no subiremos nuestro código a un servidor virtual (como una máquina 
 #### Paso B: Configurar la Base de Datos para que sea accesible
 Cuando termine el despliegue, vaya al recurso recién creado:
 1.  En el menú izquierdo, busque **"Configuración / Redes"** (Networking).
-2.  En "Reglas de firewall", agregue una regla que permita el acceso desde **"Servicios de Azure"** (esto es crucial para que el App Service pueda conectarse). Haga clic en **"Guardar"**.
-3.  En el menú izquierdo, busque **"Bases de datos"** y cree una nueva llamada `db_node`. (Si lo prefiere, puede conectarse con MySQL Workbench usando la IP del servidor y ejecutar el script SQL que ya tiene).
+2.  Descargue el Certificado SSL
+3.  Seleccione las direcciones ip que están disponibles y haga clic en **"Guardar"**.
+4.  En el menú izquierdo, busque **"Bases de datos"** y cree una nueva llamada `db_node`. (Si lo prefiere, puede conectarse con MySQL Workbench usando la IP del servidor y ejecutar el script SQL que ya tiene).
 
 #### Paso C: Crear el App Service para el Backend
 1.  En el portal, busque **"App Services"** y seleccione **"Crear" -> "Aplicación web"**.
