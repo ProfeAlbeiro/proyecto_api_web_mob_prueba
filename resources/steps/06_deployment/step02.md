@@ -9,11 +9,60 @@ Desplegar en la nube no es solo "copiar y pegar" archivos. Azure App Service eje
 
 Antes de subir el código a Azure, realice los siguientes cambios en su proyecto local.
 
-### A. El Archivo de la Base de Datos (`config/config.js`)
+### A. Modificar el (`package.json`)
+
+Reemplace **todo** el contenido de `package.json` por este:
+
+```json
+{
+  "name": "api_nodejs_express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon index.js",
+    "start:test": "cross-env NODE_ENV=test node index.js",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
+    "test:coverage": "cross-env NODE_ENV=test jest --coverage"
+  },
+  "keywords": [
+    "api",
+    "nodejs",
+    "express"
+  ],
+  "author": "Albeiro Ramos",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "http": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.24.6",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0",
+    "jest": "^30.5.2",
+    "jest-html-reporters": "^3.1.7",
+    "nodemon": "^3.1.11",
+    "supertest": "^7.3.1"
+  }
+}
+```
+
+### B. El Archivo de la Base de Datos (`config/config.js`)
 **El problema:** Azure exige conexiones seguras (SSL) y usa MySQL 8 (paquete `mysql2`). En local, su MySQL no tiene SSL.
 **La solución:** Hacer que la conexión sea dinámica.
 
-Reemplace **todo** el contenido de `backend/nodejs_express/config/config.js` por este:
+Reemplace **todo** el contenido de `../config/config.js` por este:
 
 ```javascript
 // backend/nodejs_express/config/config.js
@@ -50,7 +99,7 @@ db.connect(function(err) {
 module.exports = db;
 ```
 
-### B. El Archivo de Arranque (`server.js`)
+### C. El Archivo de Arranque (`server.js`)
 **El problema:** Azure necesita que el servidor escuche en el puerto `8080` y en `0.0.0.0`. En local, debe escuchar en el `3000`.
 **La solución:** Poner la lógica de arranque aquí, condicionada al entorno.
 
@@ -119,7 +168,7 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = app;
 ```
 
-### C. El Archivo de Desarrollo (`index.js`)
+### D. El Archivo de Desarrollo (`index.js`)
 **El problema:** Azure ejecuta `server.js`, pero cuando usted ejecuta `npm run dev`, debe ejecutar `index.js` para no chocar.
 **La solución:** Este archivo solo se usará para desarrollo local.
 
