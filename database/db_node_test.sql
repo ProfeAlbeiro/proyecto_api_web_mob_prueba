@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS db_node_test;
 
 CREATE SCHEMA db_node_test DEFAULT CHARACTER SET utf8 ;
-USE db_node;
+USE db_node_test;
 
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
